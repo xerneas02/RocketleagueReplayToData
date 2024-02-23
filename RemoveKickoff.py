@@ -3,14 +3,12 @@ import json
 import pandas as pd
 
 def remove_frames_between_goals_and_kickoffs(data_frame, goals, kickoffs):
-    # Remove frames between goals and kickoffs
     for goal in goals:
         goal_frame = goal['frameNumber']
         next_kickoff_frame = next((kickoff['startFrameNumber'] for kickoff in kickoffs if kickoff['startFrameNumber'] > goal_frame), None)
         if next_kickoff_frame:
             data_frame = data_frame.drop(range(goal_frame + 1, next_kickoff_frame))
 
-    # Remove frames between start and end of each kickoff
     for kickoff in kickoffs:
         kickoff_start_frame = kickoff['startFrameNumber']
         kickoff_end_frame = kickoff['endFrameNumber']
@@ -18,11 +16,10 @@ def remove_frames_between_goals_and_kickoffs(data_frame, goals, kickoffs):
 
     return data_frame
 
-# Directory paths
 json_directory = 'JSON'
 data_directory = 'Data'
 
-# Iterate over each JSON file in the JSON folder
+
 for json_file in os.listdir(json_directory):
     if json_file.endswith('.json'):
         # Load JSON data

@@ -4,7 +4,7 @@ import time
 
 def download_replays():
     # Define your API token
-    token = "j5kHmk9vi0gv2FHgltVStTrXvkQtug6UJPsAz4UM"
+    token = "API_TOKEN"
 
     # Define the ranks you want to download replays for
     ranks = ["platinum-1", "diamond-1"]
